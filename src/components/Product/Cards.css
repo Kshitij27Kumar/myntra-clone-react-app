@@ -1,0 +1,31 @@
+.card {
+  background-color: #fff;
+  margin: 15px;
+}
+.product-image {
+  width: 210px;
+  height: 280px;
+}
+.card-info h3,
+p {
+  margin: 2px;
+}
+.card-info {
+  padding: 10px 5px;
+}
+.card:hover {
+  box-shadow: 0 13px 10px -7px rgba(0, 0, 0, 0.1);
+}
+.wishlist-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.wishlist {
+  cursor: pointer;
+  margin-top: 8px;
+  width: 92%;
+  padding: 8px;
+  border: solid 1px rgba(255, 63, 108, 0.8);
+  color: rgba(255, 63, 108, 0.8);
+  background-color: #fff;
+}
