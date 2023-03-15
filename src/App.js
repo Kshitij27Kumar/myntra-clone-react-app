@@ -1,7 +1,7 @@
 import React from 'react'
 import Cards from './components/Cards'
 import data from './components/Data'
-import Navbar from './components/Navbar.jsx'
+import Navbar from './components/Navbar/Navbar.jsx'
 
 const App = () => {
   return (
