@@ -1,22 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../secondary.css'
-const Cards = (props) => {
+import data from './Data'
+import './Cards.css'
+import ProductItem from './ProductItem'
+import Filter from '../Filter/Filter'
+
+const Cards = () => {
+  const [product, setProduct] = useState(data)
+
+  const filterResult = (catItem) => {
+    const result = data.filter((currData) => {
+      if (catItem === currData.category) {
+        return currData.category === catItem
+      } else if (catItem === currData.pname) {
+        return currData.pname === catItem
+      }
+    })
+    console.log(result)
+    setProduct(result)
+  }
+
   return (
-    <div className='cards'>
-      <div className='card'>
-        <div className='slider'>
-          <img src={props.imgsrc} alt='' className='product-image' />
-        </div>
-        <div className='card-info'>
-          <h3 className='card-category'>{props.pname}</h3>
-          <p className='card-title'>{props.product}</p>
-          <p className='card-price'>{props.price}</p>
-          <div className='wishlist-wrapper'>
-            <button className='wishlist'> Add to Bag </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <Filter filterResult={filterResult} />
+      <ProductItem product={product} />
+    </>
   )
 }
 

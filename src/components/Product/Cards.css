@@ -14,6 +14,7 @@ p {
   padding: 10px 5px;
 }
 .card:hover {
+  /* background-color: rgba(26, 26, 26, 0.466); */
   box-shadow: 0 13px 10px -7px rgba(0, 0, 0, 0.1);
 }
 .wishlist-wrapper {
@@ -28,4 +29,9 @@ p {
   border: solid 1px rgba(255, 63, 108, 0.8);
   color: rgba(255, 63, 108, 0.8);
   background-color: #fff;
+}
+.right-content {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
 }
