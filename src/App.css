@@ -32,12 +32,33 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 .outer-wrapper {
   display: flex;
   padding: 20px 0;
   /* width: 30%; */
+}
+
+@media (max-width: 992px) {
+  .filter-left-content {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .card {
+    margin: 10px !important;
+  }
 }
