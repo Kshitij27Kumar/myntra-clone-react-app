@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../../secondary.css'
 import Data from './Data'
-import style from './Cards.css'
+import './Cards.css'
 import ProductItem from './ProductItem'
 import Filter from '../Filter/Filter'
 

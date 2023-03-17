@@ -1,15 +1,18 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToWishlist } from '../../redux/features/data'
+import { removeFromCart } from '../../redux/features/data'
+import './Modal.css'
+import './Cards.css'
 
-const ProductItem = () => {
-  const productData = useSelector((state) => state.appData.value.data)
+const Cart = () => {
+  const cartData = useSelector((state) => state.appData.value.cart)
   const dispatch = useDispatch()
+  //  removeFromWishList
   return (
     <>
-      <div className='container left-content-border'>
+      <div className='modal-wrapper'>
         <div className='right-content'>
-          {productData.map((value, index) => {
+          {cartData.map((value, index) => {
             const { id, pname, product, category, imgscr, price, visible } =
               value
             return visible ? (
@@ -17,6 +20,9 @@ const ProductItem = () => {
                 <div className='card'>
                   <div className='slider'>
                     <img src={imgscr} alt='' className='product-image' />
+                    {/* <div className="slide"></div> */}
+                    {/* <div class="slide"></div>
+									<div class="slide"></div> */}
                   </div>
                   <div className='card-info'>
                     <h3 className='card-category'>{pname}</h3>
@@ -26,11 +32,18 @@ const ProductItem = () => {
                       <button
                         className='wishlist'
                         onClick={() => {
-                          dispatch(addToWishlist(value))
+                          // dispatch(addToCheckout(value));
                         }}
                       >
-                        {' '}
-                        Add to Wishlist{' '}
+                        Add to Cart
+                      </button>
+                      <button
+                        className='wishlist'
+                        onClick={() => {
+                          dispatch(removeFromCart(value))
+                        }}
+                      >
+                        Remove from Cart
                       </button>
                     </div>
                   </div>
@@ -38,10 +51,10 @@ const ProductItem = () => {
               </div>
             ) : null
           })}
+          {/* {JSON.stringify(wishlistData, 3, 3)} */}
         </div>
       </div>
     </>
   )
 }
-
-export default ProductItem
+export default Cart

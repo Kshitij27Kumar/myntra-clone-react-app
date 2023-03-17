@@ -4,7 +4,7 @@ import Pdata from '../../components/Product/Data'
 export const counterSlice = createSlice({
   name: 'appData',
   initialState: {
-    value: Pdata,
+    value: { data: Pdata, wishlist: [], cart: [], filterData: [] },
     filters: [
       {
         name: 'Men',
@@ -59,6 +59,8 @@ export const counterSlice = createSlice({
         active: false,
       },
     ],
+    wishlist: [],
+    cart: [],
   },
   reducers: {
     filter: (state, action) => {
@@ -68,48 +70,65 @@ export const counterSlice = createSlice({
       debugger
       switch (payload.type) {
         case 'filter':
-          const filters = state.value.map((currData) => {
-            //   console.log(currData);
-            if (action.payload === currData.category) {
-              return { ...currData, visible: true }
-            } else {
-              return { ...currData, visible: false }
-            }
-          })
+          const filters =
+            state.value.filterData.length === 0
+              ? state.value.data.map((currData) => {
+                  //   console.log(currData);
+                  if (action.payload.value === currData.filter) {
+                    return { ...currData, visible: true }
+                  } else {
+                    return { ...currData, visible: false }
+                  }
+                })
+              : state.value.filterData.filter(
+                  (currData) => payload === currData.filter
+                )
           console.log(filters)
-          state.value = filters
+          state.value.data = filters
           break
         case 'category':
           // action.payload = ['zara','wrong'];
-          const categories = state.value.map((currData) => {
-            // in this function we will find all the brands selected present in the data ad show them visible as true
-            if (
-              action.payload.value.find(
-                (category) => category === currData.category
-              )
-            ) {
-              return { ...currData, visible: true }
-            } else {
-              return { ...currData, visible: false }
-            }
-          })
+          const categories =
+            state.value.filterData.length === 0
+              ? state.value.data.map((currData) => {
+                  // in this function we will find all the brands selected present in the data ad show them visible as true
+                  if (
+                    action.payload.value.find(
+                      (category) => category === currData.category
+                    )
+                  ) {
+                    return { ...currData, visible: true }
+                  } else {
+                    return { ...currData, visible: false }
+                  }
+                })
+              : state.value.filterData.filter(
+                  (currData) => payload === currData.category
+                )
           console.log(categories)
-          state.value = categories
+          state.value.data = categories
           break
         case 'brand':
           // action.payload = ['zara','wrong'];
-          const brands = state.value.map((currData) => {
-            // in this function we will find all the brands selected present in the data ad show them visible as true
-            if (
-              action.payload.value.find((brand) => brand === currData.pname)
-            ) {
-              return { ...currData, visible: true }
-            } else {
-              return { ...currData, visible: false }
-            }
-          })
+          const brands =
+            state.value.filterData.length === 0
+              ? state.value.data.map((currData) => {
+                  // in this function we will find all the brands selected present in the data ad show them visible as true
+                  if (
+                    action.payload.value.find(
+                      (brand) => brand === currData.pname
+                    )
+                  ) {
+                    return { ...currData, visible: true }
+                  } else {
+                    return { ...currData, visible: false }
+                  }
+                })
+              : state.value.filterData.filter(
+                  (currData) => payload === currData.pname
+                )
           console.log(brands)
-          state.value = brands
+          state.value.data = brands
           break
 
         default:
@@ -118,15 +137,42 @@ export const counterSlice = createSlice({
 
       // action.payload will contain the value that should be used to filter the data.
     },
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
+    addToWishlist: (state, action) => {
+      // action.payload.id will be the product that should be added from state.value
+      // state.wishlist = state.wishlist.push(action.payload)
+      const abc = state.value.wishlist
+      console.log(abc)
+      console.log([...abc, action.payload])
+      state.value.wishlist = [...abc, action.payload]
+      // const wishlistedData = state.value.find(({id})=> id === action.payload )
+      // console.log(wishlistedData);
+      // let newData = state.value.wishlist;
+      // newData.push(wishlistedData)
+      // state.wishlist = newData;
     },
-    decrement: (state) => {
-      state.value -= 1
+    removeFromWishList: (state, action) => {
+      const wishlistedData = state.value.wishlist.filter(
+        ({ id }) => id !== action.payload.id
+      )
+      console.log(wishlistedData)
+      state.value.wishlist = wishlistedData
+    },
+    addToCart: (state, action) => {
+      // action.payload.id will be the product that should be added from state.value
+      // state.wishlist = state.wishlist.push(action.payload)
+      const abc = state.value.cart
+      state.cart = abc.push(action.payload)
+      // const wishlistedData = state.value.find(({id})=> id === action.payload )
+      // console.log(wishlistedData);
+      // let newData = state.value.wishlist;
+      // newData.push(wishlistedData)
+      // state.wishlist = newData;
+    },
+    removeFromCart: (state, action) => {
+      const cartData = state.value.cart.filter(
+        ({ id }) => id !== action.payload.id
+      )
+      state.value.cart = cartData
     },
     incrementByAmount: (state, action) => {
       state.value += action.payload
@@ -135,7 +181,13 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, filter } =
-  counterSlice.actions
+export const {
+  incrementByAmount,
+  filter,
+  addToWishlist,
+  removeFromWishList,
+  addToCart,
+  removeFromCart,
+} = counterSlice.actions
 
 export default counterSlice.reducer
