@@ -8,7 +8,8 @@ import {
   faUser,
   faHeart,
 } from '@fortawesome/free-solid-svg-icons'
-const options = ['Mens', 'Womens', 'Kids', 'Home & Living', 'Offer']
+
+const menu = ['Mens', 'Womens', 'Kids', 'Home & Living', 'Offer']
 function Navbar() {
   return (
     <nav id='navbar'>
@@ -25,9 +26,9 @@ function Navbar() {
                 height='50'
               />
             </div>
-            {/* Option section */}
+            {/* Menu section */}
             <div className='flexed'>
-              {options.map((item) => (
+              {menu.map((item) => (
                 <div className='inner-content' key={item}>
                   <p>{item}</p>
                 </div>

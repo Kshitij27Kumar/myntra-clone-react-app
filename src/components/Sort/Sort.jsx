@@ -3,16 +3,20 @@ import '../../secondary.css'
 import './Sort.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import Breadcrums from '../DetailsPage/Breadcrums'
 
 const Sort = () => {
   return (
     <div className='container'>
-      <h4>Shirts For Men </h4>
+      <Breadcrums title='Home/Shirts' />
       <div className='flexed'>
         <div className=''>
           <strong>FILTERS</strong>
         </div>
         <div className='container'>
+          {/* <FontAwesomeIcon icon={faSearch} className="font-color"/> */}
+          {/* <input className="padding" type="text" placeholder="Sort by..." /> */}
+
           <select name='Sort' id='sorting'>
             <option value='sortby'>Sort by : Recommendation</option>
             <option value='sortprice'>Price</option>

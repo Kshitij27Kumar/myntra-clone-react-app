@@ -1,8 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../secondary.css'
 import './Filter.css'
+import Data from '../Product/Data'
+import { useDispatch, useSelector } from 'react-redux'
+import { filter } from '../../redux/features/data'
 
-const Filter = ({ filterResult }) => {
+const Filter = () => {
+  //   const filterData = useSelector((state) => state.appData.filters);
+  //   const categoryData = useSelector((state) => state.appData.categories);
+  //   const brandData = useSelector((state) => state.appData.brands);
+  const [brands, setBrands] = useState([])
+  const [categories, setCategories] = useState([])
+
+  const selectBrand = (brand) => {
+    if (brands.includes(brand)) {
+      let newBrand = brands.filter((brandItem) => brand !== brandItem)
+      setBrands(newBrand)
+      dispatch(filter({ type: 'brand', value: newBrand }))
+    } else {
+      // setBrands(brands.push(brand))
+      setBrands([...brands, brand])
+      dispatch(filter({ type: 'brand', value: [...brands, brand] }))
+    }
+  }
+  const selectCategory = (category) => {
+    if (categories.includes(category)) {
+      let newBrand = categories.filter((brandItem) => category !== brandItem)
+      setCategories(newBrand)
+      dispatch(filter({ type: 'category', value: newBrand }))
+    } else {
+      // setBrands(brands.push(brand))
+      setCategories([...categories, category])
+      dispatch(filter({ type: 'category', value: [...categories, category] }))
+    }
+  }
+
+  const dispatch = useDispatch()
   return (
     <div className='filter-left-content'>
       <div className='position-fixed left-content-border'>
@@ -12,28 +45,28 @@ const Filter = ({ filterResult }) => {
               <input
                 type='radio'
                 name='gender'
-                onClick={() => filterResult('men')}
+                onClick={() => dispatch(filter('men'))}
               />
               <label>Men</label>
               <br />
               <input
                 type='radio'
                 name='gender'
-                onClick={() => filterResult('women')}
+                onClick={() => dispatch(filter('women'))}
               />
               <label>Women</label>
               <br />
               <input
                 type='radio'
                 name='gender'
-                onClick={() => filterResult('boys')}
+                onClick={() => dispatch(filter('boys'))}
               />
               <label>Boys</label>
               <br />
               <input
                 type='radio'
                 name='gender'
-                onClick={() => filterResult('girls')}
+                onClick={() => dispatch(filter('girls'))}
               />
               <label>Girls</label>
             </div>
@@ -44,13 +77,31 @@ const Filter = ({ filterResult }) => {
           <div className='container'>
             <h3>Categories</h3>
             <div className='label-space'>
-              <input type='checkbox' />
+              <input
+                type='checkbox'
+                onClick={() => {
+                  selectCategory('shirt')
+                  //   dispatch(filter({type: 'brand', value: brands}))
+                }}
+              />
               <label>Shirts</label>
               <br />
-              <input type='checkbox' />
+              <input
+                type='checkbox'
+                onClick={() => {
+                  selectCategory('sleepShirt')
+                  //   dispatch(filter({type: 'brand', value: brands}))
+                }}
+              />
               <label>Sleep Shirts</label>
               <br />
-              <input type='checkbox' />
+              <input
+                type='checkbox'
+                onClick={() => {
+                  selectCategory('dogShirt')
+                  //   dispatch(filter({type: 'brand', value: brands}))
+                }}
+              />
               <label>Dog shirts</label>
             </div>
           </div>
@@ -60,19 +111,50 @@ const Filter = ({ filterResult }) => {
           <div className='container'>
             <h3>Brands</h3>
             <div className='label-space'>
-              <input type='checkbox' onClick={() => filterResult('zara')} />
+              <input
+                type='checkbox'
+                onClick={() => {
+                  //   debugger
+                  selectBrand('zara')
+                  //   dispatch(filter({type: 'brand', value: brands}))
+                }}
+              />
               <label>Zara</label>
               <br />
-              <input type='checkbox' onClick={() => filterResult('parx')} />
+              <input
+                type='checkbox'
+                onClick={() => {
+                  selectBrand('parx')
+                  //   dispatch(filter({type: 'brand', value: brands}))
+                }}
+              />
               <label>Parx</label>
               <br />
-              <input type='checkbox' onClick={() => filterResult('roadster')} />
+              <input
+                type='checkbox'
+                onClick={() => {
+                  selectBrand('roadster')
+                  //   dispatch(filter({type: 'brand', value: brands}))
+                }}
+              />
               <label>Roadster</label>
               <br />
-              <input type='checkbox' onClick={() => filterResult('harvard')} />
+              <input
+                type='checkbox'
+                onClick={() => {
+                  selectBrand('harvard')
+                  //   dispatch(filter({type: 'brand', value: brands}))
+                }}
+              />
               <label>Harvard</label>
               <br />
-              <input type='checkbox' onClick={() => filterResult('wrogn')} />
+              <input
+                type='checkbox'
+                onClick={() => {
+                  selectBrand('wrong')
+                  //   dispatch(filter({type: 'brand', value: brands}))
+                }}
+              />
               <label>Wrogn</label>
               <br />
             </div>
