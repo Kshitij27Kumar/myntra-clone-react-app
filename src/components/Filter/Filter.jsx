@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../../secondary.css'
 import './Filter.css'
-import Data from '../Product/Data'
+import Pdata from '../Product/Data'
 import { useDispatch, useSelector } from 'react-redux'
 import { filter } from '../../redux/features/data'
 
@@ -38,7 +38,7 @@ const Filter = () => {
   const dispatch = useDispatch()
   return (
     <div className='filter-left-content'>
-      <div className='position-fixed left-content-border'>
+      <div className='position-fixed left-content-border-new'>
         <div className='filter-wrapper'>
           <div className='container'>
             <div className='label-space'>

@@ -8,7 +8,7 @@ import Breadcrums from '../DetailsPage/Breadcrums'
 const Sort = () => {
   return (
     <div className='container'>
-      <Breadcrums title='Home/Shirts' />
+      <Breadcrums title='Home / Shirts' />
       <div className='flexed'>
         <div className=''>
           <strong>FILTERS</strong>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { addToWishlist } from '../../redux/features/data'
 
 const ProductItem = () => {
@@ -12,11 +13,17 @@ const ProductItem = () => {
           {productData.map((value, index) => {
             const { id, pname, product, category, imgscr, price, visible } =
               value
+            var linkto = '/details/' + id
             return visible ? (
               <div className='cards' key={index}>
                 <div className='card'>
                   <div className='slider'>
-                    <img src={imgscr} alt='' className='product-image' />
+                    <NavLink to={linkto}>
+                      <img src={imgscr} alt='' className='product-image' />
+                    </NavLink>
+                    {/* <div className="slide"></div> */}
+                    {/* <div class="slide"></div>
+                                      <div class="slide"></div> */}
                   </div>
                   <div className='card-info'>
                     <h3 className='card-category'>{pname}</h3>

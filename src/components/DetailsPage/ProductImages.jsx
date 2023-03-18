@@ -1,21 +1,22 @@
 import React from 'react'
 import './ProductImages.css'
 
-const ProductImages = () => {
+const ProductImages = (props) => {
+  console.log(props)
   return (
     <>
       <div className='image-left'>
         <div className='content-image'>
-          <h2>Hello</h2>
+          <img className='image-detailed' src={props.imgMain} alt='' />
         </div>
         <div className='content-image'>
-          <h2>Hello</h2>
+          <img className='image-detailed' src={props.img2} alt='' />
         </div>
         <div className='content-image'>
-          <h2>Hello</h2>
+          <img className='image-detailed' src={props.img3} alt='' />
         </div>
         <div className='content-image'>
-          <h2>Hello</h2>
+          <img className='image-detailed' src={props.img4} alt='' />
         </div>
       </div>
     </>

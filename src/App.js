@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import Cards from './components/Product/Cards'
-import Data from './components/Product/Data'
+import Pdata from './components/Product/Data'
 import Navbar from './components/Navbar/Navbar.jsx'
 import Filter from './components/Filter/Filter.jsx'
 import Sort from './components/Sort/Sort.jsx'
@@ -15,7 +15,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/details' element={<Details />} />
+        <Route path='/details/:detailslug' element={<Details />} />
       </Routes>
     </>
   )
