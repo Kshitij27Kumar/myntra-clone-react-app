@@ -44,12 +44,9 @@ const ProductDetails = (props) => {
         <h2 className='productPrice' style={{ 'text-transform': 'capitalize' }}>
           {props.productPrice}/-
         </h2>
-        {
-          // console.log(props.size)
-          props.size.map((value) => {
-            return <p className='size-varient'>{value}</p>
-          })
-        }
+        {props.size.map((value) => {
+          return <p className='size-varient'>{value}</p>
+        })}
         <br />
         <br />
         <button

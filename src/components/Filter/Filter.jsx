@@ -159,7 +159,7 @@ const Filter = () => {
               <input
                 type='checkbox'
                 onClick={() => {
-                  selectBrand('wrong')
+                  selectBrand('wrogn')
                   //   dispatch(filter({type: 'brand', value: brands}))
                 }}
               />
